@@ -46,22 +46,6 @@
             border-radius: 8px;
         }
 
-        footer {
-            background-color: #212529;
-            color: #adb5bd;
-            text-align: center;
-            padding: 15px 0;
-            font-size: 14px;
-        }
-
-        footer a {
-            color: #0d6efd;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>

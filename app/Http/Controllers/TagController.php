@@ -9,7 +9,8 @@ class TagController extends Controller
 {
     public function index()
     {
-        $tags = Tag::all();
+        // Mengambil 10 data per halaman
+        $tags = Tag::paginate(10);
         return view('tags.index', compact('tags'));
     }
 

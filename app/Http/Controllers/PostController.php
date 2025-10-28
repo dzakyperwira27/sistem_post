@@ -9,9 +9,8 @@ class PostController extends Controller
 {
     public function index()
     {
-        // Ambil 10 post per halaman, beserta relasi user, category, tags
-        $posts = Post::with(['user', 'category', 'tags'])->paginate(10);
 
+        $posts = Post::with(['user', 'category', 'tags'])->paginate(10);
         return view('posts.index', compact('posts'));
     }
 

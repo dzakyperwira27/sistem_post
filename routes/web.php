@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthManualController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\TagController;
 Route::resource('posts', PostController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('tags', TagController::class);
+Route::resource('logout', AuthManualController::class);
 
 
 
@@ -17,7 +19,10 @@ Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
 Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
 Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
-
-
-
 Route::get('/', [App\Http\Controllers\PostController::class, 'index']);
+
+
+//route untuk login dan logout
+Route::get('/login', [AuthManualController::class, 'index'])->name('login');
+Route::post('/login', [AuthManualController::class, 'loginprocces'])->name('loginprocces');
+Route::post('/logout', [AuthManualController::class, 'logout'])->name('logout');

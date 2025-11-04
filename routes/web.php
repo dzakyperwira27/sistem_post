@@ -1,28 +1,26 @@
 <?php
 
-use App\Http\Controllers\AuthManualController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthManualController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 
-Route::resource('posts', PostController::class);
-Route::resource('categories', CategoryController::class);
-Route::resource('tags', TagController::class);
-Route::resource('logout', AuthManualController::class);
+// 🔒 Lindungi semua halaman posts, categories, dan tags dengan middleware 'auth'
+Route::middleware(['auth'])->group(function () {
+    Route::resource('posts', PostController::class);
+    Route::resource('categories', CategoryController::class);
+    Route::resource('tags', TagController::class);
 
+    // route logout hanya bisa dilakukan saat login
+    Route::post('/logout', [AuthManualController::class, 'logout'])->name('logout');
+});
 
-
-Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
-Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
-Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
-Route::put('/posts/{id}', [PostController::class, 'update'])->name('posts.update');
-Route::delete('/posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
-Route::get('/', [App\Http\Controllers\PostController::class, 'index']);
-
-
-//route untuk login dan logout
+// 🟢 Route untuk login
 Route::get('/login', [AuthManualController::class, 'index'])->name('login');
-Route::post('/login', [AuthManualController::class, 'loginprocces'])->name('loginprocces');
-Route::post('/logout', [AuthManualController::class, 'logout'])->name('logout');
+Route::post('/login', [AuthManualController::class, 'LoginProcces'])->name('loginprocces');
+
+// 🌐 Halaman default redirect ke login
+Route::get('/', function () {
+    return redirect()->route('login');
+});

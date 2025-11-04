@@ -5,6 +5,7 @@
     @section('content')
     <div class="d-flex justify-content-between mb-3">
         <h2>Daftar Posts</h2>
+        
         <a href="{{ route('posts.create') }}" class="btn btn-primary">Tambah Post</a>
     </div>
 

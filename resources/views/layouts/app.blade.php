@@ -59,17 +59,23 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a href="{{ route('posts.index') }}" class="nav-link {{ request()->routeIs('posts.*') ? 'active' : '' }}">Posts</a></li>
-                    <li class="nav-item"><a href="{{ route('categories.index') }}" class="nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">Categories</a></li>
-                    <li class="nav-item"><a href="{{ route('tags.index') }}" class="nav-link {{ request()->routeIs('logout.*') ? 'active' : '' }}">Tags</a></li>
                     <li class="nav-item">
-                        <form action="{{ route('logout') }}" method="POST">
+                        <a href="{{ route('posts.index') }}" class="nav-link {{ request()->routeIs('posts.*') ? 'active' : '' }}">Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('categories.index') }}" class="nav-link {{ request()->routeIs('categories.*') ? 'active' : '' }}">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('tags.index') }}" class="nav-link {{ request()->routeIs('tags.*') ? 'active' : '' }}">Tags</a>
+                    </li>
+                    <li class="nav-item">
+                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
                         @csrf
                         <button type="submit" class="nav-link">Logout</button>
                         </form>
-</li>
-
+                    </li>   
                 </ul>
+
             </div>
         </div>
     </nav>

@@ -7,7 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 
 // 🔒 Lindungi semua halaman posts, categories, dan tags dengan middleware 'auth'
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'prevent-back-history'])->group(function () {
     Route::resource('posts', PostController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('tags', TagController::class);

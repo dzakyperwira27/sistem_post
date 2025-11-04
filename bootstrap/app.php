@@ -24,6 +24,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // alias route middleware
         $middleware->alias([
             'auth' => \App\Http\Middleware\Authenticate::class,
+            'prevent-back-history' => \App\Http\Middleware\PreventBackHistory::class,
         ]);
     })
 

@@ -16,40 +16,51 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        $this->call([
+            TagSeeder::class,
+        ]);
+
+        $this->call([
+            CategorySeeder::class,
+        ]);
+
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // User::factory()->create([
+        //     'name' => 'Test User1',
+        //     'email' => 'test1@example.com',
+        // ]);
 
         User::factory()->create([
             'name' => 'dzaky',
-            'email' => 'dzaky@gmail.com',
-            'password' => Hash::make('admin123'),
-        ]);
-
-        User::factory()->create([
-            'name' => 'dzikra',
-            'email' => 'dzikra@gmail.com',
+            'email' => 'dzaky1@gmail.com',
             'password' => Hash::make('admin123'),
         ]);
 
         User::factory()->create([
             'name' => 'daffa',
-            'email' => 'daffa@gmail.com',
+            'email' => 'daffa1@gmail.com',
             'password' => Hash::make('admin123'),
         ]);
 
         User::factory()->create([
+            'name' => 'dzikra',
+            'email' => 'dzikra1@gmail.com',
+            'password' => Hash::make('admin123'),
+        ]);
+
+
+
+        User::factory()->create([
             'name' => 'danish',
-            'email' => 'danish@gmail.com',
+            'email' => 'danish1@gmail.com',
             'password' => Hash::make('admin123'),
         ]);
 
         User::factory()->create([
             'name' => 'dzahira',
-            'email' => 'dzahira@gmail.com',
+            'email' => 'dzahira1@gmail.com',
             'password' => Hash::make('admin123'),
         ]);
     }

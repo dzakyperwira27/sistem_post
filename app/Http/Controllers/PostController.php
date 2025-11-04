@@ -7,12 +7,26 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index()
-    {
 
-        $posts = Post::with(['user', 'category', 'tags'])->paginate(10);
-        return view('posts.index', compact('posts'));
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+
+        $posts = \App\Models\Post::with('category', 'tags', 'user')
+            ->when($search, function ($query, $search) {
+                $query->where('title', 'like', "%{$search}%")
+                    ->orWhereHas('category', function ($q) use ($search) {
+                        $q->where('name', 'like', "%{$search}%");
+                    })
+                    ->orWhereHas('user', function ($q) use ($search) {
+                        $q->where('name', 'like', "%{$search}%");
+                    });
+            })
+            ->paginate(10)
+            ->appends(['search' => $search]);
+        return view('posts.index', compact('posts', 'search'));
     }
+
 
     public function create()
     {

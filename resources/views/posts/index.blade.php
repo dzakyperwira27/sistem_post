@@ -8,6 +8,16 @@
         
         <a href="{{ route('posts.create') }}" class="btn btn-primary">Tambah Post</a>
     </div>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+    
+
+    <form action="{{ route('posts.index') }}" method="GET" class="d-flex">
+            <input type="text" name="search" class="form-control me-2"
+               placeholder="Cari judul, kategori, atau penulis..."
+               value="{{ request('search') }}">
+            <button type="submit" class="btn btn-primary">Cari</button>
+        </form>
+    </div>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
